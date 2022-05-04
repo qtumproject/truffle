@@ -24,7 +24,8 @@ describe("Typescript Tests", () => {
   });
 
   describe("testing contract behavior", () => {
-    it("will run .ts tests and have the correct behavior", async () => {
+    it("will run .ts tests and have the correct behavior", async function () {
+      this.timeout(100000);
       try {
         await CommandRunner.run("test test/metacoin.ts", config);
         const output = logger.contents();
@@ -34,9 +35,10 @@ describe("Typescript Tests", () => {
         console.log(`the logger contents are -- ${logger.contents()}`);
         assert.fail();
       }
-    }).timeout(70000);
+    });
 
-    it("will detect and run .sol, .ts, & .js test files", async () => {
+    it("detects and runs .sol, .ts, & .js test files", async function () {
+      this.timeout(100000);
       try {
         await CommandRunner.run("test", config);
         const output = logger.contents();
@@ -46,6 +48,6 @@ describe("Typescript Tests", () => {
         console.log(`the logger contents are -- ${logger.contents()}`);
         assert.fail();
       }
-    }).timeout(70000);
+    });
   });
-}).timeout(10000);
+});

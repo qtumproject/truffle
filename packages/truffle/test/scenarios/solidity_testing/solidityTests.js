@@ -60,7 +60,7 @@ describe("Solidity Tests", function () {
     });
 
     it("will throw errors correctly", function () {
-      this.timeout(70000);
+      this.timeout(100000);
 
       return CommandRunner.run("test", config)
         .then(() => {
@@ -75,12 +75,12 @@ describe("Solidity Tests", function () {
   });
 
   describe("compatibility", function () {
-    before(async () => {
+    before(async function () {
       await initSandbox("ImportEverything.sol");
     });
 
     it("compile with latest Solidity", function () {
-      this.timeout(70000);
+      this.timeout(100000);
 
       return CommandRunner.run(
         "test",

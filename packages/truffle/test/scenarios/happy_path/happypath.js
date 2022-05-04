@@ -65,17 +65,17 @@ describe("Happy path (truffle unbox)", function () {
 
     await CommandRunner.run("migrate", config);
 
-    var MetaCoin = contract(
+    const MetaCoin = contract(
       require(path.join(config.contracts_build_directory, "MetaCoin.json"))
     );
-    var ConvertLib = contract(
+    const ConvertLib = contract(
       require(path.join(config.contracts_build_directory, "ConvertLib.json"))
     );
-    var Migrations = contract(
+    const Migrations = contract(
       require(path.join(config.contracts_build_directory, "Migrations.json"))
     );
 
-    var promises = [];
+    const promises = [];
 
     [MetaCoin, ConvertLib, Migrations].forEach(function (abstraction) {
       abstraction.setProvider(config.provider);
@@ -94,9 +94,9 @@ describe("Happy path (truffle unbox)", function () {
   });
 
   it("will run tests", async function () {
-    this.timeout(70000);
+    this.timeout(100000);
     await CommandRunner.run("test", config);
-    var output = logger.contents();
+    const output = logger.contents();
 
     assert(output.indexOf("5 passing") >= 0);
   });
