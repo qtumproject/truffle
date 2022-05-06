@@ -1,33 +1,23 @@
 const assert = require("chai").assert;
-const { default: Box } = require("@truffle/box");
-const Artifactor = require("@truffle/artifactor");
-const Resolver = require("@truffle/resolver");
 const MemoryStream = require("memorystream");
 const command = require("../../../lib/commands/config");
 const path = require("path");
 const fs = require("fs-extra");
-const glob = require("glob");
 const Config = require("@truffle/config");
+const tmp = require("tmp");
+const copy = require("../../../lib/copy");
 
 describe("config", function () {
   let config;
   let output = "";
   let memStream;
+  let tempDir;
 
   before("Create a sandbox", async () => {
-    config = await Box.sandbox("default");
-    config.resolver = new Resolver(config);
-    config.artifactor = new Artifactor(config.contracts_build_directory);
-    config.networks = {
-      default: {
-        network_id: "1"
-      },
-      secondary: {
-        network_id: "12345"
-      }
-    };
-    config.network = "default";
-    config.logger = {log: val => val && memStream.write(val)};
+    tempDir = tmp.dirSync({ unsafeCleanup: true });
+    await copy(path.join(__dirname, "../../sources/metacoin"), tempDir.name);
+    config = new Config(undefined, tempDir.name);
+    config.logger = { log: val => val && memStream.write(val) };
   });
 
   beforeEach(() => {
@@ -38,8 +28,7 @@ describe("config", function () {
   });
 
   after("Cleanup tmp files", async function () {
-    const files = glob.sync("tmp-*");
-    files.forEach(file => fs.removeSync(file));
+    tempDir.removeCallback();
   });
 
   afterEach("Clear MemoryStream", () => {
@@ -64,7 +53,7 @@ describe("config", function () {
     fs.writeFileSync(
       configFile,
       "module.exports = { migrations_directory: './a-different-dir' };",
-      {encoding: "utf8"}
+      { encoding: "utf8" }
     );
 
     await command.run({
