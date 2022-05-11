@@ -60,7 +60,7 @@ describe("Solidity Tests", function () {
     });
 
     it("will throw errors correctly", function () {
-      this.timeout(100000);
+      this.timeout(130000);
 
       return CommandRunner.run("test", config)
         .then(() => {
@@ -80,7 +80,7 @@ describe("Solidity Tests", function () {
     });
 
     it("compile with latest Solidity", function () {
-      this.timeout(100000);
+      this.timeout(130000);
 
       return CommandRunner.run(
         "test",
