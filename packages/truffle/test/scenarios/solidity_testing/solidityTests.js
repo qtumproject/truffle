@@ -41,7 +41,7 @@ describe("Solidity Tests", function () {
     });
 
     it("will run the test and have the correct balance", function () {
-      this.timeout(70000);
+      this.timeout(100000);
 
       return CommandRunner.run("test", config)
         .then(() => {
