@@ -4,9 +4,20 @@ import {
 } from "ethereum-cryptography/bip39";
 import { wordlist } from "ethereum-cryptography/bip39/wordlists/english";
 import * as EthUtil from "ethereumjs-util";
+/*
 import ethJSWallet from "ethereumjs-wallet";
 import { hdkey as EthereumHDKey } from "ethereumjs-wallet";
 import { Transaction, FeeMarketEIP1559Transaction } from "@ethereumjs/tx";
+*/
+import {
+  QtumWallet,
+  QtumJsonRpcProvider,
+  QtumWebSocketProvider,
+  QtumProviderSubprovider,
+  QtumHDKey as EthereumHDKey,
+  QtumTransaction,
+  QTUM_BIP44_PATH
+} from "qtum-ethers-wrapper";
 import Common from "@ethereumjs/common";
 
 import ProviderEngine from "web3-provider-engine";
@@ -47,12 +58,17 @@ const singletonNonceSubProvider = new NonceSubProvider();
 class HDWalletProvider {
   private hdwallet?: EthereumHDKey;
   private walletHdpath: string;
+  private wallets: { [address: string]: QtumWallet };
+  /*
   private wallets: { [address: string]: ethJSWallet };
+  */
   private addresses: string[];
   private chainId?: ChainId;
   private chainSettings: ChainSettings;
   private hardfork: Hardfork;
   private initialized: Promise<void>;
+  private provider: any;
+  private qtumProvider: any;
 
   public engine: ProviderEngine;
 
@@ -64,7 +80,10 @@ class HDWalletProvider {
       addressIndex = 0,
       numberOfAddresses = 10,
       shareNonce = true,
+      derivationPath = QTUM_BIP44_PATH,
+      /*
       derivationPath = `m/44'/60'/0'/0/`,
+      */
       pollingInterval = 4000,
       chainId,
       chainSettings = {},
@@ -165,7 +184,10 @@ class HDWalletProvider {
           let pkey;
           const from = txParams.from.toLowerCase();
           if (tmpWallets[from]) {
+            /*
             pkey = tmpWallets[from].getPrivateKey();
+            */
+            pkey = tmpWallets[from];
           } else {
             cb("Account not found");
           }
@@ -193,11 +215,17 @@ class HDWalletProvider {
           const hasEip1559 =
             txParams.maxFeePerGas !== undefined ||
             txParams.maxPriorityFeePerGas !== undefined;
+          /*
           const tx = hasEip1559
             ? FeeMarketEIP1559Transaction.fromTxData(txParams, txOptions)
             : Transaction.fromTxData(txParams, txOptions);
+          */
+          const tx = QtumTransaction.fromTxData(txParams);
 
+          /*
           const signedTx = tx.sign(pkey as Buffer);
+          */
+          const signedTx = await tx.sign(pkey as QtumWallet);
           const rawTx = `0x${signedTx.serialize().toString("hex")}`;
           cb(null, rawTx);
         },
@@ -234,9 +262,11 @@ class HDWalletProvider {
       })
     );
 
+    /* // QTUM doesn't use nonces and the NonceSubProvider decodes raw tx which will fail on QTUM transactions
     !shareNonce
       ? this.engine.addProvider(new NonceSubProvider())
       : this.engine.addProvider(singletonNonceSubProvider);
+    */
 
     this.engine.addProvider(new FiltersSubprovider());
     if (typeof providerToUse === "string") {
@@ -250,12 +280,24 @@ class HDWalletProvider {
         case "ws:":
         case "wss:":
           this.engine.addProvider(new WebsocketProvider({ rpcUrl: url }));
+          this.provider = new WebsocketProvider({ rpcUrl: url });
+          this.qtumProvider = new QtumWebSocketProvider(url);
           break;
         default:
           this.engine.addProvider(new RpcProvider({ rpcUrl: url }));
+          this.provider = new RpcProvider({ rpcUrl: url });
+          this.qtumProvider = new QtumJsonRpcProvider(url);
       }
     } else {
       this.engine.addProvider(new ProviderSubprovider(providerToUse));
+      this.provider = new ProviderSubprovider(providerToUse);
+      this.qtumProvider = new QtumProviderSubprovider(this.provider);
+    }
+
+    for (let key in this.wallets) {
+      this.wallets[key] = this.wallets[key].connect(
+        this.qtumProvider
+      ) as QtumWallet;
     }
 
     // Required by the provider engine.
@@ -319,7 +361,10 @@ class HDWalletProvider {
       const wallet = this.hdwallet
         .derivePath(this.walletHdpath + i)
         .getWallet();
+      /*
       const addr = `0x${wallet.getAddress().toString("hex")}`;
+      */
+      const addr = `${wallet.getAddressString()}`;
       this.addresses.push(addr);
       this.wallets[addr] = wallet;
     }
@@ -337,7 +382,10 @@ class HDWalletProvider {
     for (let i = addressIndex; i < privateKeys.length; i++) {
       const privateKey = Buffer.from(privateKeys[i].replace("0x", ""), "hex");
       if (EthUtil.isValidPrivate(privateKey)) {
+        /*
         const wallet = ethJSWallet.fromPrivateKey(privateKey);
+        */
+        const wallet = QtumWallet.fromPrivateKey(privateKeys[i]);
         const address = wallet.getAddressString();
         this.addresses.push(address);
         this.wallets[address] = wallet;
