@@ -1,16 +1,16 @@
 {
-  "name": "@truffle/hdwallet-provider",
-  "description": "HD Wallet-enabled Web3 provider",
+  "name": "@qtumproject/hdwallet-provider",
+  "description": "HD Wallet-enabled Web3 provider for QTUM",
   "license": "MIT",
   "author": "Tim Coulter <tim@trufflesuite.com>",
-  "homepage": "https://github.com/trufflesuite/truffle/tree/master/packages/hdwallet-provider#readme",
+  "homepage": "https://github.com/qtumproject/truffle/tree/master/packages/hdwallet-provider#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/trufflesuite/truffle.git",
+    "url": "https://github.com/qtumproject/truffle.git",
     "directory": "packages/hdwallet-provider"
   },
   "bugs": {
-    "url": "https://github.com/trufflesuite/truffle/issues"
+    "url": "https://github.com/qtumproject/truffle/issues"
   },
   "version": "2.0.8",
   "main": "dist/index.js",
@@ -44,6 +44,7 @@
   },
   "keywords": [
     "etheruem",
+    "qtum",
     "hd",
     "mnemonic",
     "provider",
