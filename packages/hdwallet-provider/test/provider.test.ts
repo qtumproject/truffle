@@ -49,16 +49,16 @@ describe("HD Wallet Provider", function () {
   describe("instantiating with positional arguments", () => {
     it("provides for a mnemonic", async () => {
       const truffleDevAccounts = [
-        "0xd11311e7957a316f858e71fc57f6fdf4a4bf6393",
-        "0x38c3a6c3ae426c525d528203f715b047748fadf7",
-        "0x5f3bb22fc543bd10b9a5c11a80ceace7812afae9",
-        "0x465e57219287165ea76c3c7dc22e160729879a44",
-        "0x80fd139b577ee551a80849725ea2dceb65cb2554",
-        "0x54e9c688d242e196a23d6858541af9d88a7ca7ed",
-        "0xabe9e3e042fddfab07ed6cc2c280d50f0da62b19",
-        "0xb11b46155427de998271ebf178dfb67b81c21553",
-        "0x3005c6cec3e90760ce788377bc5ff72b5be90f4f",
-        "0xfcaa107d311590547e70c7587c1095f4d1502c48"
+        "0x269317ad61a787cb504efa9c1c3ed60581157dc0",
+        "0xa1c5fb0d3ba1870361425ed639f9f2c3d87a230a",
+        "0x77b072e9a25dbe1435713a6a73aaf8cf30ceb95c",
+        "0x61ba5a05547864762c910cd44db20023a4143a7c",
+        "0x9b3c223c8c5add429f603069c059a78d9c8eb7ea",
+        "0xc922a18133e36d65b97fc61adc9d3a944d5286b7",
+        "0xc574419f7fb046629649357fa0e01f4743d712f7",
+        "0xf29bf4cd8b30da63da27453f0467ff9e527fa7c7",
+        "0x1cb9fa7b162003bb587023d58cb0dbf4f8473f7e",
+        "0x5373c8d2eabf737429c49462255fc61a6183f96f"
         /*
         "0x627306090abab3a6e1400e9345bc60c78a8bef57",
         "0xf17f52151ebef6c7334fad080c5704d77216b732",
@@ -177,16 +177,16 @@ describe("HD Wallet Provider", function () {
   describe("instantiating with non-positional arguments", () => {
     it("provides for a mnemonic passed as an object", async () => {
       const truffleDevAccounts = [
-        "0xd11311e7957a316f858e71fc57f6fdf4a4bf6393",
-        "0x38c3a6c3ae426c525d528203f715b047748fadf7",
-        "0x5f3bb22fc543bd10b9a5c11a80ceace7812afae9",
-        "0x465e57219287165ea76c3c7dc22e160729879a44",
-        "0x80fd139b577ee551a80849725ea2dceb65cb2554",
-        "0x54e9c688d242e196a23d6858541af9d88a7ca7ed",
-        "0xabe9e3e042fddfab07ed6cc2c280d50f0da62b19",
-        "0xb11b46155427de998271ebf178dfb67b81c21553",
-        "0x3005c6cec3e90760ce788377bc5ff72b5be90f4f",
-        "0xfcaa107d311590547e70c7587c1095f4d1502c48"
+        "0x269317ad61a787cb504efa9c1c3ed60581157dc0",
+        "0xa1c5fb0d3ba1870361425ed639f9f2c3d87a230a",
+        "0x77b072e9a25dbe1435713a6a73aaf8cf30ceb95c",
+        "0x61ba5a05547864762c910cd44db20023a4143a7c",
+        "0x9b3c223c8c5add429f603069c059a78d9c8eb7ea",
+        "0xc922a18133e36d65b97fc61adc9d3a944d5286b7",
+        "0xc574419f7fb046629649357fa0e01f4743d712f7",
+        "0xf29bf4cd8b30da63da27453f0467ff9e527fa7c7",
+        "0x1cb9fa7b162003bb587023d58cb0dbf4f8473f7e",
+        "0x5373c8d2eabf737429c49462255fc61a6183f96f"
         /*
         "0x627306090abab3a6e1400e9345bc60c78a8bef57",
         "0xf17f52151ebef6c7334fad080c5704d77216b732",
@@ -221,16 +221,16 @@ describe("HD Wallet Provider", function () {
 
     it("provides for a mnemonic passed as a string", async () => {
       const truffleDevAccounts = [
-        "0xd11311e7957a316f858e71fc57f6fdf4a4bf6393",
-        "0x38c3a6c3ae426c525d528203f715b047748fadf7",
-        "0x5f3bb22fc543bd10b9a5c11a80ceace7812afae9",
-        "0x465e57219287165ea76c3c7dc22e160729879a44",
-        "0x80fd139b577ee551a80849725ea2dceb65cb2554",
-        "0x54e9c688d242e196a23d6858541af9d88a7ca7ed",
-        "0xabe9e3e042fddfab07ed6cc2c280d50f0da62b19",
-        "0xb11b46155427de998271ebf178dfb67b81c21553",
-        "0x3005c6cec3e90760ce788377bc5ff72b5be90f4f",
-        "0xfcaa107d311590547e70c7587c1095f4d1502c48"
+        "0x269317ad61a787cb504efa9c1c3ed60581157dc0",
+        "0xa1c5fb0d3ba1870361425ed639f9f2c3d87a230a",
+        "0x77b072e9a25dbe1435713a6a73aaf8cf30ceb95c",
+        "0x61ba5a05547864762c910cd44db20023a4143a7c",
+        "0x9b3c223c8c5add429f603069c059a78d9c8eb7ea",
+        "0xc922a18133e36d65b97fc61adc9d3a944d5286b7",
+        "0xc574419f7fb046629649357fa0e01f4743d712f7",
+        "0xf29bf4cd8b30da63da27453f0467ff9e527fa7c7",
+        "0x1cb9fa7b162003bb587023d58cb0dbf4f8473f7e",
+        "0x5373c8d2eabf737429c49462255fc61a6183f96f"
         /*
         "0x627306090abab3a6e1400e9345bc60c78a8bef57",
         "0xf17f52151ebef6c7334fad080c5704d77216b732",
@@ -263,16 +263,16 @@ describe("HD Wallet Provider", function () {
 
     it("provides for a mnemonic with a password", async () => {
       const accounts = [
-        "0x83aea4909c72e90b3399269ea157cba1137b0a4e",
-        "0x0db58474f979e60a1d4e0731a9a6f6fb8cfa47d6",
-        "0xc135c3b7e721a89da1c0579ec9165174698545d8",
-        "0x4d92bd7250982d4173e0110f1b24081c2c5b3b35",
-        "0x5afb3e6ca837dea794d25c50aa7b48c7be0d10f3",
-        "0xae6d50a8a39c40e52d9a1f6e92e720ab852edae2",
-        "0x3b907c0642d360b66c36c781ec81aa729c598727",
-        "0xdeec8271a677adde8768f25f4e1579d40e8e1578",
-        "0xd346f8e99746fe2c5da69c1ee7457a1c7cd048f0",
-        "0xa3d081885769420bae20f78ec0c7dcab0ad867c5"
+        "0x78d901ff6086521b0cc178b66af59193dc1c162a",
+        "0x6289708c9aeafe5f3851b718daa5a8b764f826a7",
+        "0x55d4fdebb86810448ba1d33ca2651f85aaba5c23",
+        "0x37889fa9b9587dd6de3bcc2d51cf4db27af79381",
+        "0x33c37ac177b1bf1156c203738eff8022e69b013f",
+        "0x8ea94c4cdcf5c7485ff0955c44f23612433c7c9b",
+        "0x2bf7d43c012402ecdde0304abd549781ba3945cd",
+        "0xf5fd6b61e163cd89998604b980f51a7eae99f9a1",
+        "0x6a7f1bf415986fb41cf2e199cd4b236f9bd9083e",
+        "0xe6faacdda38ebaa3f220305ec252f608afcfd75b"
         /*
         "0x01d4195e36a244ceb6d6e2e55de1c406bf6089a0",
         "0x7e8f0f01542d14c1bfb9f07957ff61cade44abf3",

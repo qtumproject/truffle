@@ -16,7 +16,7 @@ import {
   QtumProviderSubprovider,
   QtumHDKey as EthereumHDKey,
   QtumTransaction,
-  QTUM_BIP44_PATH
+  SLIP_BIP44_PATH
 } from "qtum-ethers-wrapper";
 import Common from "@ethereumjs/common";
 
@@ -80,7 +80,7 @@ class HDWalletProvider {
       addressIndex = 0,
       numberOfAddresses = 10,
       shareNonce = true,
-      derivationPath = QTUM_BIP44_PATH,
+      derivationPath = SLIP_BIP44_PATH,
       /*
       derivationPath = `m/44'/60'/0'/0/`,
       */
